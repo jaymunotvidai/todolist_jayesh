@@ -1,0 +1,75 @@
+<div class="card" *ngIf="!EditToggle">
+    <div class="card-body">
+        <div class="row row-mian">
+          <span class="task-list">Task List </span>
+        </div>
+        <div class="row">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th class="th-list main-td">Title</th>
+                        <th class="th-list main-td">Status</th>
+                        <th class="th-list main-td">Priority</th>
+                        <th class="th-list main-td">Due Date</th>
+                        <th class="th-list main-td">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let menu of data , let i = index" (click)="onclick(menu)">
+                        <td class="main-td" >{{menu.name}}</td>
+                        <td class="main-td">{{menu.status}}</td>
+                        <td class="main-td">{{menu.priority}}</td>
+                        <td class="main-td">{{menu.duedate}}</td>
+                        <td class="main-td"><button (click)="delete(i)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+<div class="row">
+    <button (click)="editlist()">Edit List</button>
+</div>
+<div class="row">
+    <button (click)="addnew()">Add New</button>
+</div>        
+
+
+
+
+    </div>
+</div>
+
+
+<div class="card" *ngIf="EditToggle">
+    <div class="card-body">
+        <div class="row row-mian">
+          <span class="task-list">Edit List </span>
+        </div>
+        <div class="row">
+            <table class="table-list">
+                <thead>
+                    <tr>
+                        <th class="th-list main-td">Title</th>
+                        <th class="th-list main-td">Status</th>
+                        <th class="th-list main-td">Priority</th>
+                        <th class="th-list main-td">Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let menu of data , let i = index" >
+                        <td class="main-td"><input type="text" [(ngModel)]="menu.name"></td>
+                        <td class="main-td"><input type="text" [(ngModel)]="menu.status"></td>
+                        <td class="main-td"><input type="text" [(ngModel)]="menu.priority"></td>
+                        <td class="main-td"><input type="date" [(ngModel)]="menu.duedate"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <button (click)="BackList()">Back TO  List</button>
+            <button (click)="savedateEdited()">Save data </button>
+        </div>
+        
+    </div>
+</div>

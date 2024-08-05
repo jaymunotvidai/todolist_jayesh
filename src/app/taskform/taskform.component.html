@@ -1,0 +1,62 @@
+<form [formGroup]="TaskForm" (ngSubmit)="submit()" >
+  <div class="row row-form-component">
+    <div class="col-md-4">
+      <!-- <span class="main-label">Title</span> -->
+      <!-- <input type="text" formControlName="name"> -->
+      <app-input
+      [formGroup]="TaskForm"
+      controlName="name"
+      label="Title"
+      type="text"
+      placeholder="Enter title">
+    </app-input>
+    </div>
+    <div class="col-md-4">
+      <!-- <span class="main-label">Description</span> -->
+      <!-- <input type="text" formControlName="description"> -->
+      <app-input
+      [formGroup]="TaskForm"
+      controlName="description"
+      label="description"
+      type="text"
+      placeholder="Enter description">
+      </app-input>
+    </div>
+    <div class="col-md-4">
+      <span class="main-label">Status</span>
+      <select formControlName="status">
+        <option value="Select">Select</option>
+        <option value="Done">Done</option>
+        <option value="In-Progress">In-Progress</option>
+        <option value="Yet TO start">Yet TO start</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <span class="main-label">Priority</span>
+      <select formControlName="priority">
+        <option value="Select">Select</option>
+        <option value="High">High</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <!-- <span class="main-label">Due Date</span> -->
+      <!-- <input type="date" formControlName="duedate"> -->
+      <app-input
+      [formGroup]="TaskForm"
+      controlName="duedate"
+      label="duedate"
+      type="date"
+      placeholder="Enter duedate">
+      </app-input>
+    </div>
+  </div>
+  <div class="row row-form-component">
+    <input type="submit" value="submit" class="submit-main">
+  </div>
+</form>
+
+<div class="row">
+  <button  (click)="backtolist()">Back To list</button>
+</div>
