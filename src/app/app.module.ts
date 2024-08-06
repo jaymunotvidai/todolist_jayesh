@@ -9,7 +9,7 @@ import { TaskformComponent } from './taskform/taskform.component';
 import { InputComponent } from './reusable component/input/input.component';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
     TasklistComponent,
     TaskdetailComponentComponent,
     TaskformComponent,
-    InputComponent
+    InputComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonserviceService } from '../commonservice.service';
 import { Router } from '@angular/router';
+import { MockService } from '../mock.service';
 
 @Component({
   selector: 'app-tasklist',
@@ -8,14 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./tasklist.component.scss']
 })
 export class TasklistComponent {
-  constructor(private commonservice: CommonserviceService, private router: Router) {}
+  constructor(private commonservice: CommonserviceService, private router: Router, private mockservice : MockService) {}
   @Output() dataEvent = new EventEmitter<any>();
   flagToggle: any = false;
   EditToggle: any = false;
   data: any[] = [
-    { id: 1, name: 'Task 1', status: 'Pending', priority: 'high', duedate: '2024-10-30' },
-    { id: 2, name: 'Task 2', status: 'Completed', priority: 'low', duedate: '2024-09-30' },
-    { id: 3, name: 'Task 3', status: 'In Progress', priority: 'medium', duedate: '2024-08-30' }
+    // { id: 1, name: 'Task 1', status: 'Pending', priority: 'high', duedate: '2024-10-30' },
+    // { id: 2, name: 'Task 2', status: 'Completed', priority: 'low', duedate: '2024-09-30' },
+    // { id: 3, name: 'Task 3', status: 'In Progress', priority: 'medium', duedate: '2024-08-30' }
   ];
 
   ngOnInit() {
@@ -24,7 +25,20 @@ export class TasklistComponent {
         this.data.push(data);
       }
     });
-    console.log(this.data);
+
+    this.mockservice.tasks$.subscribe(data => {
+      this.data = data;
+      // this.mockservice.tasksSubject.next(this.data);
+    })
+    
+
+    // this.mockService.tasks$.subscribe((tasks) => {
+    //   this.dataSource = new MatTableDataSource(tasks);
+    //   this.dataSource.sort = this.sort;
+    // });
+
+
+    
   }
 
   onclick(e: any) {
@@ -50,8 +64,9 @@ export class TasklistComponent {
     this.EditToggle = false;
   }
 
-  delete(i: any) {
+  delete(i: any,e:any) {
     this.data.splice(i, 1);
+    this.mockservice.deleteTask(e.name)
   }
 
   addnew() {
